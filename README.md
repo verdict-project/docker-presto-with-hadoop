@@ -30,7 +30,7 @@ yongjoopark/presto-with-hadoop
 ```
 
 
-# More memeory for Presto?
+# More memory for Presto?
 
 Provide the following environment variables. The startup script picks those variables and set
 configuration files accordingly.
