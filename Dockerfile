@@ -39,9 +39,11 @@ ENV PRESTO_HOME /root/presto-server-318
 RUN curl -s https://repo1.maven.org/maven2/io/prestosql/presto-server/318/presto-server-318.tar.gz | tar -xz -C /root
 RUN curl -s https://repo1.maven.org/maven2/io/prestosql/presto-cli/318/presto-cli-318-executable.jar -o $PRESTO_HOME/bin/presto-cli 
 RUN chmod +x $PRESTO_HOME/bin/presto-cli
+RUN ln -s $PRESTO_HOME/bin/presto-cli /usr/local/bin/presto-cli
+RUN chmod +x /usr/local/bin/presto-cli
 COPY presto/catalog $PRESTO_HOME/etc/catalog
-COPY presto/jvm.config $PRESTO_HOME/etc/jvm.config
-COPY presto/config.properties $PRESTO_HOME/etc/config.properties
+COPY presto/jvm.config.template $PRESTO_HOME/etc/jvm.config.template
+COPY presto/config.properties.template $PRESTO_HOME/etc/config.properties.template
 COPY presto/log.properties $PRESTO_HOME/etc/log.properties
 COPY presto/node.properties $PRESTO_HOME/etc/node.properties
 
