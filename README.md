@@ -9,7 +9,7 @@ removed.
 components (e.g., Hadoop, Hive, PostgreSQL) in a single image. Thus, much easier to install without
 setting network bridges to other containers.
 2. The classpath for Amazon S3 connections are properly set. As a result, large data files can 
-easily be stored in the cloud.
+be easily stored in the cloud.
 3. Presto's `drop table` is enabled.
 
 
@@ -18,15 +18,37 @@ easily be stored in the cloud.
 For connection to regular Hive:
 
 ```bash
-docker run -d --name presto-with-hadoop yongjoopark/presto-with-hadoop
+docker run -d -p 8080:8080 --name presto-with-hadoop yongjoopark/presto-with-hadoop
 ```
+
+Note that `8080` is the default port on which Presto runs. Opening the port will enable other applications to connect Presto.
+
+To check if Presto server has started, run
+```bash
+docker logs --tail 10 presto-with-hadoop
+```
+
+If the server has started, the following messages will be printed
+```bash
+starting yarn daemons
+starting resourcemanager, logging to /root/hadoop-2.9.2/logs/yarn--resourcemanager-9bb175f0919b.out
+localhost: starting nodemanager, logging to /root/hadoop-2.9.2/logs/yarn-root-nodemanager-9bb175f0919b.out
+Started as 844
+2019-08-28 18:03:28: Starting Hive Metastore Server
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/root/apache-hive-2.3.6-bin/lib/log4j-slf4j-impl-2.6.2.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/root/hadoop-2.9.2/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+```
+
 
 ## S3 Configuration
 
 For additional connection to S3:
 
 ```bash
-docker run -d --name presto-with-hadoop \
+docker run -d -p 8080:8080 --name presto-with-hadoop \
 -e AWS_ACCESS_KEY_ID={YourAccessKey} \
 -e AWS_SECRET_ACCESS_KEY={YourSecretAccessKey} \
 yongjoopark/presto-with-hadoop
@@ -38,7 +60,7 @@ Provide the following environment variables. The startup script picks those vari
 configuration files accordingly.
 
 ```bash
-docker run -d --name presto-with-hadoop \
+docker run -d -p 8080:8080 --name presto-with-hadoop \
 -e AWS_ACCESS_KEY_ID={YourAccessKey} \
 -e AWS_SECRET_ACCESS_KEY={YourSecretAccessKey} \
 -e QUERY_MAX_MEMORY='50GB' \
