@@ -33,12 +33,6 @@ RUN curl -s https://jdbc.postgresql.org/download/postgresql-42.2.6.jar -o /root/
 RUN DEBIAN_FRONTEND=noninteractive apt install -y postgresql postgresql-contrib
 RUN su postgres -c '/usr/lib/postgresql/10/bin/initdb -D /var/lib/postgresql/10/main2 --auth-local trust --auth-host md5'
 
-## Setup the directories needed for Hive
-RUN /root/hadoop-2.9.2/bin/hdfs dfs -mkdir /tmp
-RUN /root/hadoop-2.9.2/bin/hdfs dfs -mkdir -p /user/hive/warehouse
-RUN /root/hadoop-2.9.2/bin/hdfs dfs -chmod 777 /tmp
-RUN /root/hadoop-2.9.2/bin/hdfs dfs -chmod 777 /user/hive/warehouse
-
 
 # Setup Presto
 ENV PRESTO_HOME /root/presto-server-318

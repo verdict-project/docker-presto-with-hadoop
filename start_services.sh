@@ -1,6 +1,10 @@
 #!/bin/bash
 /etc/init.d/ssh start
 
+# Start HDFS
+/root/hadoop-2.9.2/sbin/start-all.sh
+
+
 # Prepare Postgres for Hive Metastore
 su postgres -c '/usr/lib/postgresql/10/bin/pg_ctl -D /var/lib/postgresql/10/main2 start'
 sleep 2
@@ -8,8 +12,12 @@ psql -U postgres -c "CREATE USER hiveuser WITH PASSWORD 'hiveuser';"
 psql -U postgres -c "CREATE DATABASE metastore;"
 /root/apache-hive-2.3.6-bin/bin/schematool -dbType postgres -initSchema
 
-# Start HDFS
-/root/hadoop-2.9.2/sbin/start-all.sh
+
+# Setup the HDFS directories needed for Hive
+RUN /root/hadoop-2.9.2/bin/hdfs dfs -mkdir /tmp
+RUN /root/hadoop-2.9.2/bin/hdfs dfs -mkdir -p /user/hive/warehouse
+RUN /root/hadoop-2.9.2/bin/hdfs dfs -chmod 777 /tmp
+RUN /root/hadoop-2.9.2/bin/hdfs dfs -chmod 777 /user/hive/warehouse
 
 
 # Start Presto
