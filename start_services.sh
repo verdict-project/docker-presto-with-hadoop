@@ -14,10 +14,10 @@ psql -U postgres -c "CREATE DATABASE metastore;"
 
 
 # Setup the HDFS directories needed for Hive
-RUN /root/hadoop-2.9.2/bin/hdfs dfs -mkdir /tmp
-RUN /root/hadoop-2.9.2/bin/hdfs dfs -mkdir -p /user/hive/warehouse
-RUN /root/hadoop-2.9.2/bin/hdfs dfs -chmod 777 /tmp
-RUN /root/hadoop-2.9.2/bin/hdfs dfs -chmod 777 /user/hive/warehouse
+/root/hadoop-2.9.2/bin/hdfs dfs -mkdir /tmp
+/root/hadoop-2.9.2/bin/hdfs dfs -mkdir -p /user/hive/warehouse
+/root/hadoop-2.9.2/bin/hdfs dfs -chmod 777 /tmp
+/root/hadoop-2.9.2/bin/hdfs dfs -chmod 777 /user/hive/warehouse
 
 
 # Start Presto
