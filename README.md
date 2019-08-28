@@ -47,11 +47,25 @@ yongjoopark/presto-with-hadoop
 ```
 
 
+# Command-line interface for Presto
+
+After starting a container as described above, you can use Presto's command-line interface as
+follows:
+
+```bash
+docker exec -it presto-with-hadoop presto-cli
+```
+
+
+
 # Versions
+
+All components are located in `/root/`.
 
 - Hadoop: hadoop-2.9.2
 - PostgreSQL (for Hive Metastore): 10
 - Hive: 2.3.6
 - Presto: 318
+- Ubuntu: 18.04
 
-Presto is only compatible with Hadoop2 (not Hadoop3).
+Note that Presto is only compatible with Hadoop2 (not Hadoop3).
