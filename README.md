@@ -3,6 +3,15 @@ useful for quick tests since the metadata (e.g., schemas, tables) will be gone w
 removed.
 
 
+# Features
+
+1. Unlike most other Docker images for the Presto database, this image offers multiple necessary 
+components (e.g., Hadoop, Hive, PostgreSQL) in a single image. Thus, much easier to install without
+setting network bridges to other containers.
+2. The classpath for Amazon S3 connections are properly set. As a result, large data files can 
+easily be stored in the cloud.
+
+
 # How to run
 
 For connection to regular Hive:
