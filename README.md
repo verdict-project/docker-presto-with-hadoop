@@ -18,14 +18,14 @@ be easily stored in the cloud.
 For connection to regular Hive:
 
 ```bash
-docker run -d -p 8080:8080 --name presto-with-hadoop yongjoopark/presto-with-hadoop
+docker run -d -p 8080:8080 --name presto yongjoopark/presto-with-hadoop
 ```
 
 Note that `8080` is the default port on which Presto runs. Opening the port will enable other applications to connect Presto.
 
 To check if Presto server has started, run
 ```bash
-docker logs --tail 10 presto-with-hadoop
+docker logs --tail 10 presto
 ```
 
 If the server has started, the following messages will be printed
@@ -48,7 +48,7 @@ SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
 For additional connection to S3:
 
 ```bash
-docker run -d -p 8080:8080 --name presto-with-hadoop \
+docker run -d -p 8080:8080 --name presto \
 -e AWS_ACCESS_KEY_ID={YourAccessKey} \
 -e AWS_SECRET_ACCESS_KEY={YourSecretAccessKey} \
 yongjoopark/presto-with-hadoop
@@ -60,7 +60,7 @@ Provide the following environment variables. The startup script picks those vari
 configuration files accordingly.
 
 ```bash
-docker run -d -p 8080:8080 --name presto-with-hadoop \
+docker run -d -p 8080:8080 --name presto \
 -e AWS_ACCESS_KEY_ID={YourAccessKey} \
 -e AWS_SECRET_ACCESS_KEY={YourSecretAccessKey} \
 -e QUERY_MAX_MEMORY='50GB' \
@@ -77,7 +77,7 @@ After starting a container as described above, you can use Presto's command-line
 follows:
 
 ```bash
-docker exec -it presto-with-hadoop presto-cli
+docker exec -it presto presto-cli
 ```
 
 

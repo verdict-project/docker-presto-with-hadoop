@@ -23,10 +23,10 @@ psql -U postgres -c "CREATE DATABASE metastore;"
 # Start Presto
 export PRESTO_HOME=/root/presto-server-318
 
-use_query_max_memory=${QUERY_MAX_MEMORY:-"2GB"}
-use_query_max_memory_per_node=${QUERY_MAX_MEMORY_PER_NODE:-"1GB"}
-use_query_max_total_memory_per_node=${QUERY_MAX_TOTAL_MEMORY_PER_NODE:-"1GB"}
-use_jvm_heap=${JAVA_HEAP_SIZE:-"3G"}
+use_query_max_memory=${QUERY_MAX_MEMORY:-"1GB"}
+use_query_max_memory_per_node=${QUERY_MAX_MEMORY_PER_NODE:-"512MB"}
+use_query_max_total_memory_per_node=${QUERY_MAX_TOTAL_MEMORY_PER_NODE:-"512MB"}
+use_jvm_heap=${JAVA_HEAP_SIZE:-"2G"}
 
 sed "s/{QUERY_MAX_MEMORY}/$use_query_max_memory/" $PRESTO_HOME/etc/config.properties.template | \
     sed "s/{QUERY_MAX_MEMORY_PER_NODE}/$use_query_max_memory_per_node/" | \
