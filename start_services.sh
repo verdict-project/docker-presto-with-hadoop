@@ -42,6 +42,8 @@ sed "s/{AWS_ACCESS_KEY}/$AWS_ACCESS_KEY_ID/" $PRESTO_HOME/etc/catalog/hive.prope
 
 $PRESTO_HOME/bin/launcher.py start
 
+# Start Hive Metastore
+nohup /root/apache-hive-2.3.6-bin/bin/hive --service metastore &
 
-# Start Metastore (this keeps running in the foregound)
-/root/apache-hive-2.3.6-bin/bin/hive --service metastore
+# Start Hive Service (this keeps running in the foreground)
+/root/apache-hive-2.3.6-bin/bin/hiveserver2
