@@ -47,4 +47,5 @@ nohup /root/apache-hive-2.3.6-bin/bin/hive --service metastore &
 #/root/apache-hive-2.3.6-bin/bin/hive --service metastore
 
 # Start Hive Service (this keeps running in the foreground)
+sleep 10    # wait for metastore to start first
 /root/apache-hive-2.3.6-bin/bin/hiveserver2
