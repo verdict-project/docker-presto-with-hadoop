@@ -18,4 +18,9 @@
         <name>javax.jdo.option.ConnectionPassword</name>
         <value>hiveuser</value>
     </property>
+
+    <property>
+        <name>hive.server2.thrift.bind.host</name>
+        <value>localhost/127.0.0.1</value>
+    </property>
 </configuration>
