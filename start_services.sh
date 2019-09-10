@@ -44,6 +44,7 @@ $PRESTO_HOME/bin/launcher.py start
 
 # Start Hive Metastore
 nohup /root/apache-hive-2.3.6-bin/bin/hive --service metastore &
+#/root/apache-hive-2.3.6-bin/bin/hive --service metastore
 
 # Start Hive Service (this keeps running in the foreground)
 /root/apache-hive-2.3.6-bin/bin/hiveserver2
