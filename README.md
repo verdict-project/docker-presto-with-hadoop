@@ -15,10 +15,10 @@ be easily stored in the cloud.
 
 # How to run
 
-For connection to regular Hive:
+For regular connections to Presto:
 
 ```bash
-docker run -d -p 8080:8080 --name presto yongjoopark/presto-with-hadoop
+docker run -d -p 8080:8080 --name presto verdictproject/presto-with-hadoop
 ```
 
 Note that `8080` is the default port on which Presto runs. Opening the port will enable other applications to connect Presto.
@@ -51,8 +51,12 @@ For additional connection to S3:
 docker run -d -p 8080:8080 --name presto \
 -e AWS_ACCESS_KEY_ID={YourAccessKey} \
 -e AWS_SECRET_ACCESS_KEY={YourSecretAccessKey} \
-yongjoopark/presto-with-hadoop
+verdictproject/presto-with-hadoop
 ```
+
+Then, the AWS keys passed as environment variables are set to Presto's config file at when starting
+a container.
+
 
 ## Need more memory?
 
@@ -67,7 +71,7 @@ docker run -d -p 8080:8080 --name presto \
 -e QUERY_MAX_MEMORY_PER_NODE='40GB' \
 -e QUERY_MAX_TOTAL_MEMORY_PER_NODE='40GB' \
 -e JAVA_HEAP_SIZE='60G'
-yongjoopark/presto-with-hadoop
+verdictproject/presto-with-hadoop
 ```
 
 
@@ -125,4 +129,12 @@ All components are located in `/root/`.
 - Presto: 318
 - Ubuntu: 18.04
 
-Note that Presto is only compatible with Hadoop2 (not Hadoop3).
+Note that as of the time of creating this image, Presto is only compatible with Hadoop2 
+(not Hadoop3).
+
+
+# Source code
+
+The original Dockerfile and other files are available at:
+https://github.com/verdict-project/docker-presto-with-hadoop
+
