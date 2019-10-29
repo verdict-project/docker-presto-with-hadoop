@@ -31,7 +31,7 @@ use_heap_headroom=${HEAP_HEADROOM_PER_NODE:-"0.6GB"}
 
 sed "s/{QUERY_MAX_MEMORY}/$use_query_max_memory/" $PRESTO_HOME/etc/config.properties.template | \
     sed "s/{QUERY_MAX_MEMORY_PER_NODE}/$use_query_max_memory_per_node/" | \
-    sed "s/{QUERY_MAX_TOTAL_MEMORY_PER_NODE}/$use_query_max_total_memory_per_node/" \
+    sed "s/{QUERY_MAX_TOTAL_MEMORY_PER_NODE}/$use_query_max_total_memory_per_node/" | \
     sed "s/{HEAP_HEADROOM_PER_NODE}/$use_heap_headroom/" \
     > $PRESTO_HOME/etc/config.properties
 
